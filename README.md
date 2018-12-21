@@ -1,14 +1,14 @@
 # BEARCAVE
 A collective data repository for archiving, trimming, mapping and maintaining Illumina resequencing data
 
-##Purpose and Philosophy
+## Purpose and Philosophy
 Many researchers who work with Illumina resequencing data will write their personal computational pipelines that can process their data in an automated manner. However, when working as a group on shared or similar datasets it may be necessary to agree on a fixed workflow to keep the results of different projects consistent and comparable. In such cases, the storage of both raw and processed data files in a centralised shared data repository accessible by the group provides a more efficient approach than maintaining duplicated, redundant copies of data files in each individual’s home directories or local systems.
 
 The BEARCAVE provides an environment for establishing and maintaining such a shared data repository. The BEARCAVE distribution includes all necessary scripts and will automatically download and install the necessary software via the Miniconda package and environment manager (https://conda.io/docs/index.html), so can be easily used on multiple servers or systems, while ensuring consistent results across systems. It provides a simple user-friendly method for inserting and archiving raw data files. All necessary software and scripts for processing raw data into the widely used bam file format is included: Cutadapt [1] for adapter trimming and short read removal, FLASH [2] for merging paired-end reads, BWA [3] for mapping to a reference genome and SAMtools [4] for sorting, quality filtering and duplicate removal. The generated results and processed data files are stored within a logical folder structure to provide a framework for collective research work. Moreover, all datasets are automatically assigned with a unique identification code such that the sequence of processing and scripts can be tracked from final bam file all the way back to the original raw data file(s). A script is also included to automatically generate a list of all data sets in the BEARCAVE and their stage of processing. The workflow is not completely automated and requires user-input at certain key steps. This helps to avoid accidentally overwriting valuable data and allows for better troubleshooting, in case it is needed. The scripts are also constructed in a way to help avoid inadvertent use of incorrect copies or versions of software programs or data files.
 
 We originally developed the BEARCAVE as a shared resource for multiple researchers working with large datasets from ancient and modern bears (Ursidae). However, it is applicable to any taxonomic group and is fully customisable allowing optimisation for different research  requirements and environments. The framework and workflow of the BEARCAVE has been optimised based on years of experience of the practicalities of working with such data, and most importantly what can go wrong and how it can be avoided. Scripts are provided for the processing of single-end and paired-end sequencing of both single-stranded and double-stranded libraries, allowing changes in minimum read length threshold and mapping specificity. We find these alternatives accommodate all our needs, but scripts can be easily modified or new scripts added should additional functions be required.
 
-##Important notes:
+## Important notes:
 * How to cite: If you publish results that have been generated using the BEARCAVE, please refer to this article: <not published yet>
     * Note, however, that the BEARCAVE does not contain any original software. Please also refer to the appropriate articles for Cutadapt [1], FLASH [2], BWA [3] and SAMtools [4] where applicable.
 * All scripts are located in and must be executed from the BEARCAVE/scripts/ folder. They are executable Bash scripts. To run them, simply navigate to BEARCAVE/scripts and type ./<script.sh>
@@ -18,10 +18,10 @@ We originally developed the BEARCAVE as a shared resource for multiple researche
 Permissions are automatically set so that only members of the installer’s user group can use and access the BEARCAVE.
 * The examples given in this manual refer to a test dataset and reference genome that come with the BEARCAVE package.
 
-##Known issues
+## Known issues
 Having multiple identical and simultaneously running jobs (i.e. identical scripts and identical input data) will overwrite each other’s output files and therefore break them. This is also true if the jobs are issued by different users.
 
-#Installation
+# Installation
 * Download the BEARCAVE package from GitHub (https://github.com/nikolasbasler/BEARCAVE), copy it into a folder of your choice and extract it:
     tar -zxvf BEARCAVE_v*tar.gz
 This will create a new folder called BEARCAVE.
@@ -43,7 +43,7 @@ BEARCAVE/
 		trimlogs/
 
 
-#Indexing Reference Genomes
+# Indexing Reference Genomes
 The BEARCAVE can not only be used for bears. You can download any reference genome you wish to use for mapping or use the polar bear mitochindrial genome provided in /test_data/:
 * Create a folder for the reference genome you want to use in /refgenomes/, and copy your reference genome into this folder, e.g.
    /refgenomes/PolarBear_mt/
@@ -52,7 +52,7 @@ The BEARCAVE can not only be used for bears. You can download any reference geno
 * The reference genome will be indexed with BWA and SAMtools and a new “mapped” folder will automatically be created:
     /mappedPolarBear_mt/
 
-#Inserting Sequencing Data
+# Inserting Sequencing Data
 * Create a new folder in /rawdata/ named like the sample your data originates from (this folder name should be used whenever a script asks for "sample"), e.g.
     /rawdata/BearA/
 * Copy your zipped FASTQ files into the new folder. They might look like this:
@@ -100,7 +100,7 @@ Who should be contacted before publishing this data (separate names with an unde
     ll | sort -t '+' -k 2
 * You can add several datasets at once. Simply include a line for each dataset in the table you have created.
 
-#Trimming (and paired-end merging)
+# Trimming (and paired-end merging)
 * All adapter trimming is performed by Cutadapt (version 1.12) [1] with an adapter overlap value (‑O) of 1. If not specifically stated otherwise, a minimum read length (-m) of 30 is used.
 * For merging of paired-end data, FLASH (version 1.2.11) [2] is used with a maximum overlap value for read pairs (-M) of 75.
 * Note that all paths to files and programs are hard-coded into the scripts. This is to reduce the potential for alternative software versions or data files located outside the BEARCAVE being used for analysis.
@@ -137,7 +137,7 @@ For trimming any libraries from single-end sequencing run with a custom minimum 
 * Move the log file(s) into /trimdata/trimlogs/ and the zipped FASTQ file(s) one folder up into /trimdata/.
 * Delete the „processing" folder, which should now be empty.
 
-#Combining Datasets (optional)
+# Combining Datasets (optional)
 * Navigate to /scripts/ and call the combine_files.sh script using the sample name, the prefixes of the files you want to combine and either ‘mappable’ (for merged read pair files), ‘mappable_R1’ (for unmerged R1 files) or ‘mappable_R2’ (for unmerged R2 files) as arguments, e.g.:
     ./combine_files.sh BearA mappable pr1 pr2
 * If one of the files already contains combined datasets, use its whole set of prefixes as one argument. E.g., if you want to combine the files
@@ -150,7 +150,7 @@ call the script like this:
 * The order of prefixes in the file name reflects the order of the sequences in the file.
 * Move the combined file one folder up into /trimdata/ and delete the "processing" folder, which should now be empty.
 
-#Mapping
+# Mapping
 * All mapping is performed by BWA (version 0.7.15) [3] "aln" and "samse" (for single-end data) or "sampe" (for paired-end data). If not specifically stated otherwise, a mismatch parameter (-n) of 0.04 is used.
 * Low quality reads are filtered from the alignment by SAMtools (version 1.3.1.) [4] "view" with a threshold (-q) of 30 which is then sorted with SAMtools "sort".
 * Like the trimming and merging scripts, all paths to files and programs are hard-coded into the scripts. This is to reduce the potential for alternative software versions or data files located outside the BEARCAVE being used for analysis.
@@ -187,7 +187,7 @@ For mapping modern paired-end data. Arguments: PREFIX, reference genome*, 3‑ch
     ls -1 \*urs\*bam
 
 
-#State of the Cave (optional)
+# State of the Cave (optional)
 * For a detailed list of all raw data that entered the BEARCAVE, view the metadata file /rawdata/metadata.txt.
 * To get an overview of which datasets have been trimmed and mapped (and to which references), navigate to /scripts/ and execute the cavescan.sh without any arguments.
 * This will generate a comma separated table that lists all samples and prefixes associated with them and if they have been trimmed and/or mapped to the references or not (based on the existence of files in the respective "mapped" folders):
@@ -196,7 +196,7 @@ For mapping modern paired-end data. Arguments: PREFIX, reference genome*, 3‑ch
 
 
 
-#Quick Guide for Repeated Use
+# Quick Guide for Repeated Use
 
 * Inserting data:
     * If not already existing, create a folder for your sample in /rawdata/.
@@ -232,7 +232,7 @@ For mapping modern paired-end data. Arguments: PREFIX, reference genome*, 3‑ch
     * This will generate a comma separated table (BEARCAVE/state_of_the_cave.txt) that lists all samples and prefixes associated with them and if they have been trimmed and/or mapped to the references or not.
 
 
-#References
+# References
 1. 	Martin M. Cutadapt removes adapter sequences from high-throughput sequencing reads. EMBnet.journal. 2011;17: 10.
 2. 	Magoč T, Salzberg SL. FLASH: fast length adjustment of short reads to improve genome assemblies. Bioinformatics. academic.oup.com; 2011;27: 2957–2963.
 3. 	Li H, Durbin R. Fast and accurate short read alignment with Burrows–Wheeler transform. Bioinformatics. Oxford University Press; 2009;25: 1754–1760.

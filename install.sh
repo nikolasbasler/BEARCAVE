@@ -1,10 +1,8 @@
 #!/bin/bash
 # November 2018
 
-cd ..
-mv BEARCAVE-master/ BEARCAVE/
-cd BEARCAVE/
 
+mkdir rawdata/old_metadata
 mkdir software
 mkdir trimdata
 mkdir trimdata/trimlogs
@@ -22,20 +20,16 @@ echo "---------- INSTALLING MINICONDA3 -----------"
 
 echo "---------- INSTALLING CUTADAPT 1.12 -----------"
 ./miniconda3/bin/conda install -y -f -c bioconda cutadapt=1.12
-# Enter Yes when asked to install the packages.
 
 
 echo "---------- INSTALLING FLASH 1.2.11 -----------"
 ./miniconda3/bin/conda install -y -f -c bioconda flash=1.2.11
-# Enter Yes when asked to install the packages.
 
 echo "---------- INSTALLING BWA 0.7.15 -----------"
 ./miniconda3/bin/conda install -y -f -c bioconda bwa=0.7.15
-# Enter Yes when asked to install the packages.
 
 echo "---------- INSTALLING SAMTOOLS 1.3.1 -----------"
 ./miniconda3/bin/conda install -y -f -c bioconda samtools=1.3.1
-# Enter Yes when asked to install the packages.
 
 cd ..
 
@@ -57,6 +51,13 @@ chmod 770 rawdata/old_metadata/
 chmod -R 770 trimdata/
 
 chmod 770 refgenomes/
+
+echo "---------- CHANGING FOLDER NAME FROM BEARCAVE-master TO BEARCAVE -----------"
+echo "You may want to update your working directory by moving one folder up and back into BEARCAVE/"
+
+cd ..
+mv BEARCAVE-master/ BEARCAVE/
+cd BEARCAVE/
 
 
 echo "---------- BEARCAVE INSTALLATION COMPLETE -----------"

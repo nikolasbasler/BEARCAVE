@@ -1,5 +1,5 @@
 #!/bin/bash
-# November 2018
+# December 2018
 
 mkdir software
 mkdir trimdata
@@ -57,5 +57,3 @@ chmod 770 refgenomes/
 
 echo "---------- BEARCAVE INSTALLATION COMPLETE -----------"
 echo -e '\n'
-
-

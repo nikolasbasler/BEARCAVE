@@ -1,6 +1,11 @@
 #!/bin/bash
 # November 2018
 
+mkdir software
+mkdir trimdata
+mkdir trimdata/trimlogs
+mkdir refgenomes
+
 cd software
 
 echo "---------- DOWNLOADING MINICONDA3 4.5.11 -----------"

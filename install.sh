@@ -1,5 +1,5 @@
 #!/bin/bash
-# November 2018
+# December 2018
 
 
 mkdir rawdata/old_metadata
@@ -62,5 +62,3 @@ cd BEARCAVE/
 
 echo "---------- BEARCAVE INSTALLATION COMPLETE -----------"
 echo -e '\n'
-
-

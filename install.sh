@@ -53,7 +53,6 @@ chmod -R 770 trimdata/
 chmod 770 refgenomes/
 
 echo "---------- CHANGING FOLDER NAME FROM BEARCAVE-master TO BEARCAVE -----------"
-echo "You may want to update your working directory by moving one folder up and back into BEARCAVE/"
 
 cd ..
 mv BEARCAVE-master/ BEARCAVE/
@@ -62,3 +61,7 @@ cd BEARCAVE/
 
 echo "---------- BEARCAVE INSTALLATION COMPLETE -----------"
 echo -e '\n'
+echo "You may want to update your working directory by navigating one folder up and back into BEARCAVE/"
+echo -e '\n'
+
+

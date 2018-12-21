@@ -1,6 +1,10 @@
 #!/bin/bash
 # November 2018
 
+cd ..
+mv BEARCAVE-master/ BEARCAVE/
+cd BEARCAVE/
+
 mkdir software
 mkdir trimdata
 mkdir trimdata/trimlogs

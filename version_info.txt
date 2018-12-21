@@ -1,0 +1,20 @@
+
+Version 0.1 - 2018/10/31
+
+Version 0.2 - 2018/11/19
+BWA, Samtools and FLASH come preinstalled. Cutadapt is being installed via miniconda by the user.
+The user has to agree to license terms, set $PWD/miniconda3 as target install directory, should answer 'no' when asked to prepend the miniconda path and 'yes' when the cutadapt installation asks to install packages.
+
+Version 0.3 - 2018/11/20
+All software is to be installed with miniconda. 
+
+Version 1.0 - 2018/11/20
+Miniconda is not part of this package anymore but downloaded.
+Installation of Miniconda and all software is now silent.
+
+Version 1.1 2018/11/26
+The licence agreement of Miniconda is now dispayed again and has to be confirmed during installation (issue #4).
+Bug in combine_files.sh fixed that led to wrong file names (issue #3)
+
+Version 1.2 2018/12/06
+Fixes on index_ref.sh, combine_files.sh and cavescan.sh

@@ -1,4 +1,4 @@
-**BEARCAVE**
+# BEARCAVE
 
 A collective data repository for archiving, trimming, mapping and
 maintaining Illumina resequencing data
@@ -25,7 +25,12 @@ so can be easily used on multiple servers or systems, while ensuring
 consistent results across systems. It provides a simple user-friendly
 method for inserting and archiving raw data files. All necessary
 software and scripts for processing raw data into the widely used bam
-file format is included: Cutadapt \[1\] for adapter trimming and short read removal, FLASH \[2\] for merging paired-end reads, BWA \[3\] for mapping to a reference genome and SAMtools \[4\] for sorting, quality filtering and duplicate removal. The generated results and processed data files are stored within a logical folder structure to provide a framework for collective research work. Moreover, all datasets
+file format is included: Cutadapt \[1\] for adapter trimming and short
+read removal, FLASH \[2\] for merging paired-end reads, BWA \[3\] for 
+mapping to a reference genome and SAMtools \[4\] for sorting, quality 
+filtering and duplicate removal. The generated results and processed data
+files are stored within a logical folder structure to provide a framework
+for collective research work. Moreover, all datasets
 are automatically assigned with a unique identification code such that
 the sequence of processing and scripts can be tracked from final bam
 file all the way back to the original raw data file(s). A script is also
@@ -51,7 +56,7 @@ minimum read length threshold and mapping specificity. We find these
 alternatives accommodate all our needs, but scripts can be easily
 modified or new scripts added should additional functions be required.
 
-**Important notes: **
+**Important notes:**
 
 -   **How to cite**: If you publish results that have been generated
     using the BEARCAVE, please refer to this article: &lt;not published
@@ -98,7 +103,7 @@ modified or new scripts added should additional functions be required.
     class="underline">https://github.com/nikolasbasler/BEARCAVE</span>](https://github.com/nikolasbasler/BEARCAVE)),
     copy it into a folder of your choice and extract it:
 
-    `tar -zxvf BEARCAVE\_v\*tar.gz`
+    `tar -zxvf BEARCAVE_v*tar.gz`
     This will create a new folder called BEARCAVE.
 
 -   Navigate to BEARCAVE/ and execute the installation script:
@@ -133,17 +138,17 @@ mitochindrial genome provided in /test\_data/:
 -   Create a folder for the reference genome you want to use in
     /refgenomes/, and copy your reference genome into this folder,e.g.
 
-    > **/refgenomes/PolarBear\_mt/**
+    > **/refgenomes/PolarBear_mt/**
 
 -   Navigate to /scripts/ and execute the index\_ref script with the
     path and file name of your new reference genome as argument, e.g.:
 
-    `./index\_ref.sh ../refgenomes/PolarBear\_mt/polarbear\_mt.fasta.gz`
+    `./index_ref.sh ../refgenomes/PolarBear_mt/polarbear_mt.fasta.gz`
 
 -   The reference genome will be indexed with BWA and SAMtools and a new
     “mapped” folder will automatically be created:
 
-    > **/mappedPolarBear\_mt/**
+    > **/mappedPolarBear_mt/**
 
 **Inserting Sequencing Data**
 
@@ -154,7 +159,7 @@ mitochindrial genome provided in /test\_data/:
 -   Copy your zipped FASTQ files into the new folder. They might look
     like this:
 
-    **/rawdata/BearA/BearA-01\_S2\_L001\_R1\_001.fastq.gz**
+    **/rawdata/BearA/BearA-01_S2_L001_R1_001.fastq.gz**
 
 -   Note that file names must not contain any + (plus) symbols.
 
@@ -203,7 +208,7 @@ mitochindrial genome provided in /test\_data/:
     generated randomly, the prefix in your file will very likely be
     different):
 
-    `/rawdata/BearA/pr1+BearA-01\_S2\_L001\_R1\_001.fastq.gz`
+    `/rawdata/BearA/pr1+BearA-01_S2_L001_R1_001.fastq.gz`
 
 -   The addition of the prefix will lead to a different order in which
     the files are listed. To view them ordered alphabetically, ignoring
@@ -269,12 +274,12 @@ mitochindrial genome provided in /test\_data/:
 
 -   Run the appropriate script, e.g. like this:
 
-    `./trim\_SE.sh BearA pr1 BearA-01\_S2`
+    `./trim_SE.sh BearA pr1 BearA-01_S2`
 
 -   When the script is done, you will find a new "processing" folder in
     /trimdata/ containing the output files mentioned in the table above.
 
-    > **/trimdata/BearA\_processing/**
+    > **/trimdata/BearA_processing/**
 
 -   View the log file(s) and confirm the trimming went as expected.
 
@@ -295,14 +300,14 @@ mitochindrial genome provided in /test\_data/:
 
 -   If one of the files already contains combined datasets, use its
     whole set of prefixes as one argument. E.g., if you want to combine
-    the files __pr1+BearA\_mappable.fastq.gz__ and __pr2\_pr3+BearA\_mappable.fastq.gz__
+    the files __pr1+BearA_mappable.fastq.gz__ and __pr2\_pr3+BearA_mappable.fastq.gz__
     call the script like this:
 
     `./combine_files.sh BearA mappable pr1 pr2_pr3`
 
 -   Note, that if you are using files from a read length cutoff other
     than 30, you will have to extend the sample name argument according
-    to the file, e.g. BearA\_28bp
+    to the file, e.g. BearA_28bp
 
 -   When the files are combined, the script will ask you if the original
     files should be deleted. This is recommended, as the original files
@@ -379,7 +384,7 @@ mitochindrial genome provided in /test\_data/:
     appropriate “mapped“ folder in BEARCAVE/, containing the output
     files mentioned in the table above, e.g.:
 
-> **/mappedPolarBear\_mt/pr1+BearA\_panda\_map\_processing/**
+> **/mappedPolarBear_mt/pr1+BearA_panda_map_processing/**
 
 -   View the log file and confirm the mapping has worked as expected and
     then move it to the "logs" folder of the respective "mapped" folder,
@@ -393,7 +398,7 @@ mitochindrial genome provided in /test\_data/:
     identifier, the reference used for mapping and the total Gb that
     mapped, e.g. like this:
 
-> **pr1+BearA\_urs\_PolarBear\_mt\_.00666.bam**
+> **pr1+BearA_urs_PolarBear_mt_.00666.bam**
 
 -   Move these files (both the .bam and the .bam.bai) one folder up into
     its appropriate "mapped" folder and delete the "processing" folder,
@@ -403,7 +408,7 @@ mitochindrial genome provided in /test\_data/:
     set of bam files, e.g. this command lists all bam files for the
     taxon “urs”
 
-    `ls -1 \*urs\*bam`
+    `ls -1 *urs*bam`
 
 **State of the Cave (optional)**
 
@@ -436,10 +441,10 @@ mitochindrial genome provided in /test\_data/:
 
     -   Create a comma separated table containing the metadata for your
         dataset. Consult the above paragraph and the
-        /scripts/add\_to\_meta.sh for more information on the required
-        format and the /test\_data/BearA.meta for an example.
+        /scripts/add_to_meta.sh for more information on the required
+        format and the /test_data/BearA.meta for an example.
 
-    -   Navigate to /scripts/ and execute the add\_to\_meta.sh with your
+    -   Navigate to /scripts/ and execute the add_to_meta.sh with your
         metadata table as argument. A random file name prefix will
         automatically be added to your raw data.
 
@@ -465,8 +470,8 @@ mitochindrial genome provided in /test\_data/:
 -   **Combining datasets (optional):**
 
     -   Navigate to /scripts/ and execute the cobine\_files.sh with the
-        SAMPLE name, either ‘mappable’, ‘mappable\_R1’ or
-        ‘mappable\_R2’ and all PREFIXes of the datasets you wish to
+        SAMPLE name, either ‘mappable’, ‘mappable_R1’ or
+        ‘mappable_R2’ and all PREFIXes of the datasets you wish to
         combine as arguments.
 
     -   Navigate to the automatically created "processing" folder in
@@ -475,8 +480,8 @@ mitochindrial genome provided in /test\_data/:
     -   The file name of the output file lists all prefixes of files
         which were combined. When using this combined file for mapping
         or further combining, refer to it using the whole set of
-        prefixes as one argument (e.g. pr1\_pr2\_pr3 for the file
-        pr1\_pr2\_pr3+BearA\_mappable.fastq.gz).
+        prefixes as one argument (e.g. pr1_pr2_pr3 for the file
+        pr1_pr2_pr3+BearA_mappable.fastq.gz).
 
     -   Move the combined file from the "processing" folder one folder
         up into /trimdata/.
@@ -515,7 +520,7 @@ mitochindrial genome provided in /test\_data/:
         cavescan.sh without any arguments.
 
     -   This will generate a comma separated table (BEARCAVE/
-        state\_of\_the\_cave.txt) that lists all samples and prefixes
+        state_of_the_cave.txt) that lists all samples and prefixes
         associated with them and if they have been trimmed and/or mapped
         to the references or not.
 

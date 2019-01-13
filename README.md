@@ -26,8 +26,8 @@ consistent results across systems. It provides a simple user-friendly
 method for inserting and archiving raw data files. All necessary
 software and scripts for processing raw data into the widely used bam
 file format is included: Cutadapt \[1\] for adapter trimming and short
-read removal, FLASH \[2\] for merging paired-end reads, BWA \[3\] for 
-mapping to a reference genome and SAMtools \[4\] for sorting, quality 
+read removal, FLASH \[2\] for merging paired-end reads, BWA \[3\] for
+mapping to a reference genome and SAMtools \[4\] for sorting, quality
 filtering and duplicate removal. The generated results and processed data
 files are stored within a logical folder structure to provide a framework
 for collective research work. Moreover, all datasets
@@ -171,7 +171,7 @@ mitochindrial genome provided in /test\_data/:
     For an example metadata file, have a look at /test\_data/BearA.meta.
 
 | | |
-|-|-|-|
+|-|-|
 | SEQ\_RUN      | An identifier for the original file. **SEQ\_RUN has to be the beginning of the file name** (e.g. BearA-01\_S2 for the file in the example above). |
 | SAMPLE        | The sample name. Identical to the folder name in /rawdata/.                                                                                       |
 | TAXON         | The sample’s taxon.                                                                                                                               |

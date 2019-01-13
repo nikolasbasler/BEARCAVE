@@ -165,8 +165,9 @@ mitochindrial genome provided in /test\_data/:
     information on the format). Missing data should be inserted as NA.
     For an example metadata file, have a look at /test\_data/BearA.meta.
 
+| | |
+|-|-|-|
 | SEQ\_RUN      | An identifier for the original file. **SEQ\_RUN has to be the beginning of the file name** (e.g. BearA-01\_S2 for the file in the example above). |
-|---------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
 | SAMPLE        | The sample name. Identical to the folder name in /rawdata/.                                                                                       |
 | TAXON         | The sample’s taxon.                                                                                                                               |
 | LOCALITY      | Where the sample has been found.                                                                                                                  |

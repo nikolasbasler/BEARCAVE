@@ -153,7 +153,7 @@ mitochindrial genome provided in /test\_data/:
     >**/rawdata/BearA/**
 
 -   Copy your zipped FASTQ files into the new folder. They might look
-    like this:
+    like this (look into /test\_data/ for this example file):
 
     > **/rawdata/BearA/BearA-01_S2_L001_R1_001.fastq.gz**
 

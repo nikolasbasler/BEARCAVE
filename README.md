@@ -20,16 +20,12 @@ such a shared data repository. The BEARCAVE distribution includes all
 necessary scripts and will automatically download and install the
 necessary software via the Miniconda package and environment manager
 ([<span
-class="underline">https://conda.io/docs/index.html</span>](https://conda.io/docs/index.html)),
-so can be easily used on multiple servers or systems, while ensuring
-consistent results across systems. It provides a simple user-friendly
-method for inserting and archiving raw data files. All necessary
-software and scripts for processing raw data into the widely used bam
-file format is included: Cutadapt \[1\] for adapter trimming and short
+class="underline">https://conda.io/docs/index.html</span>](https://conda.io/docs/index.html)): Cutadapt \[1\] for adapter trimming and short
 read removal, FLASH \[2\] for merging paired-end reads, BWA \[3\] for
 mapping to a reference genome and SAMtools \[4\] for sorting, quality
-filtering and duplicate removal. The generated results and processed data
-files are stored within a logical folder structure to provide a framework
+filtering and duplicate removal. It therefore can be easily used on multiple servers or systems, while ensuring
+consistent results across systems and also also provides a simple user-friendly
+method for inserting and archiving raw data files. The generated results and processed data files are stored within a logical folder structure to provide a framework
 for collective research work. Moreover, all datasets
 are automatically assigned with a unique identification code such that
 the sequence of processing and scripts can be tracked from final bam
@@ -103,8 +99,7 @@ modified or new scripts added should additional functions be required.
     class="underline">https://github.com/nikolasbasler/BEARCAVE</span>](https://github.com/nikolasbasler/BEARCAVE)),
     copy it into a folder of your choice and extract it:
 
-    `tar -zxvf BEARCAVE_v*tar.gz`
-    This will create a new folder called BEARCAVE.
+    `tar -zxvf BEARCAVE_v*tar.gz` This will create a new folder called BEARCAVE.
 
 -   Navigate to BEARCAVE/ and execute the installation script:
 
@@ -154,12 +149,13 @@ mitochindrial genome provided in /test\_data/:
 
 -   Create a new folder in /rawdata/ named like the sample your data
     originates from (**this folder name should be used whenever a script
-    asks for "sample"**), e.g. **/rawdata/BearA/**
+    asks for "sample"**), e.g.
+    >**/rawdata/BearA/**
 
 -   Copy your zipped FASTQ files into the new folder. They might look
     like this:
 
-    **/rawdata/BearA/BearA-01_S2_L001_R1_001.fastq.gz**
+    > **/rawdata/BearA/BearA-01_S2_L001_R1_001.fastq.gz**
 
 -   Note that file names must not contain any + (plus) symbols.
 
@@ -180,12 +176,12 @@ mitochindrial genome provided in /test\_data/:
 | AGE           | Modern, historical or ancient.                                                                                                                    |
 | DATABASE\_NO  | If the data has been published, state the accession number here, if not use "unpublished" instead.                                                |
 | LIBRARY\_NO   | The library number for internal reference.                                                                                                        |
-| EXTRACT\_METH | Method used for DNA extraction (e.g. “Dab” for Dabney).                                                                                           |
+| EXTRACT\_METH | Method used for DNA extraction (e.g. “Dab” for Dabney \[5\]).                                                                                           |
 | LIBRARY\_METH | Single-stranded (SS) or double-stranded (DS).                                                                                                     |
 | PLATFORM      | The device used for sequencing.                                                                                                                   |
 | READ\_LENGTH  | Maximum read length used during the sequencing run.                                                                                               |
 | MODE          | Single-end (SE) or paired-end (PE).                                                                                                               |
-| SEQ\_PRIMER   | The primer used for sequencing (e.g. “standard” or CL72).                                                                                         |
+| SEQ\_PRIMER   | The primer used for sequencing (e.g. “standard” or CL72 \[5\]).                                                                                         |
 | RIGHTS        | Who should be contacted before publishing this data (separate names with an underscore, avoid commas and blank spaces).                           |
 
 -   To add the content of your table to the BEARCAVE’s metadata file and
@@ -240,7 +236,7 @@ mitochindrial genome provided in /test\_data/:
 <tr class="header">
 <td><p>trim_merge_DS_PE_CL72.sh</p>
 <p>Software: Cutadapt [1], FLASH [2]</p></th>
-<td>For trimming and merging double-stranded libraries from a paired-end sequencing run that used the CL72 sequencing primer [5]. <strong>Arguments:</strong> SAMPLE, PREFIX, SEQ_RUN. <strong>Output:</strong> 1 log file for trimming, 1 log file for merging, 3 FASTQ files (mappable_R1.fastq and mappable_R2.fastq contain unmerged reads, mappable.fastq contains merged reads). Process output with a PE mapping script. If your data is from an ancient sample, you may want to delete the unmerged files and consider only merged data. Then the output has to be processed with an SE mapping script.</th>
+<td>For trimming and merging double-stranded libraries from a paired-end sequencing run that used the CL72 sequencing primer [6]. <strong>Arguments:</strong> SAMPLE, PREFIX, SEQ_RUN. <strong>Output:</strong> 1 log file for trimming, 1 log file for merging, 3 FASTQ files (mappable_R1.fastq and mappable_R2.fastq contain unmerged reads, mappable.fastq contains merged reads). Process output with a PE mapping script. If your data is from an ancient sample, you may want to delete the unmerged files and consider only merged data. Then the output has to be processed with an SE mapping script.</th>
 </tr>
 </thead>
 <tbody>
@@ -252,17 +248,17 @@ mitochindrial genome provided in /test\_data/:
 <tr class="even">
 <td><p>trim_merge_SS_PE_CL72.sh</p>
 <p>Software: Cutadapt [1], FLASH [2]</p></td>
-<td>For trimming and merging single-stranded libraries from a paired-end sequencing run that used the CL72 sequencing primer [5]. <strong>Arguments:</strong> SAMPLE, PREFIX, SEQ_RUN. <strong>Output:</strong> 1 log file for trimming, 1 log file for merging, 1 FASTQ file (files containing unmerged reads are deleted as they are not used for mapping ancient data). Process output with an SE mapping script (because merged reads are not paired anymore).</td>
+<td>For trimming and merging single-stranded libraries from a paired-end sequencing run that used the CL72 sequencing primer [6]. <strong>Arguments:</strong> SAMPLE, PREFIX, SEQ_RUN. <strong>Output:</strong> 1 log file for trimming, 1 log file for merging, 1 FASTQ file (files containing unmerged reads are deleted as they are not used for mapping ancient data). Process output with an SE mapping script (because merged reads are not paired anymore).</td>
 </tr>
 <tr class="odd">
 <td><p>trim_merge_SS_PE_CL72_var_min_length.sh</p>
 <p>Software: Cutadapt [1], FLASH [2]</p></td>
-<td>For trimming with a custom read length cutoff and merging single-stranded libraries from a paired-end sequencing run that used the CL72 sequencing primer [5]. <strong>Arguments:</strong> SAMPLE, PREFIX, SEQ_RUN, minimum read length. <strong>Output:</strong> See trim_merge_SS_PE_CL72.sh.</td>
+<td>For trimming with a custom read length cutoff and merging single-stranded libraries from a paired-end sequencing run that used the CL72 sequencing primer [6]. <strong>Arguments:</strong> SAMPLE, PREFIX, SEQ_RUN, minimum read length. <strong>Output:</strong> See trim_merge_SS_PE_CL72.sh.</td>
 </tr>
 <tr class="even">
 <td><p>trim_SE.sh</p>
 <p>Software: Cutadapt [1]</p></td>
-<td>For trimming any libraries from a single-end sequencing run. <strong>Arguments:</strong> SAMPLE, PREFIX, SEQ_RUN. <strong>Output:</strong> 1 log file for trimming, 1 FASTQ file. Process output with a SE mapping script.</td>
+<td>For trimming any libraries from a single-end sequencing run. <strong>Arguments:</strong> SAMPLE, PREFIX, SEQ_RUN. <strong>Output:</strong> 1 log file for trimming, 1 FASTQ file. Process output with an SE mapping script.</td>
 </tr>
 <tr class="odd">
 <td><p>trim_SE_var_min_length.sh</p>
@@ -330,12 +326,10 @@ mitochindrial genome provided in /test\_data/:
     specifically stated otherwise, a mismatch parameter (-n) of 0.04 is
     used.
 
--   Low quality reads are filtered from the alignment by SAMtools
-    (version 1.3.1.) \[4\] "view"
-    with a threshold (-q) of 30 which is then sorted with SAMtools
-    "sort".
+-   The alignment is edited by SAMtools (version 1.3.1.) \[4\]: Low quality reads are removed by SAMtools "view"
+    with a threshold (-q) of 30, the alignment is sorted with "sort" before duplicate reads are collapsed with "rmdup" and the alignment is indexed with "index".
 
--   Like the trimming and merging scripts, all paths to files and
+-   Like in the trimming and merging scripts, all paths to files and
     programs are hard-coded into the scripts. This is to reduce the
     potential for alternative software versions or data files located
     outside the BEARCAVE being used for analysis.
@@ -347,29 +341,29 @@ mitochindrial genome provided in /test\_data/:
 <tr class="header">
 <td><p>map_SE_0.01mismatch.sh</p>
 <p>Software: BWA [3], SAMtools [4]</p></th>
-<td>For mapping SE DNA with a BWA mismatch value (-n) of 0.01. <strong>Arguments:</strong> PREFIX, reference genome*, 3‑character taxon identifier, SAMPLE.</th>
+<td>For mapping single-end data with a BWA mismatch value (-n) of 0.01. <strong>Arguments:</strong> PREFIX, reference genome<strong>\*</strong>, 3‑character taxon identifier, SAMPLE.</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td><p>map_SE.sh</p>
 <p>Software: BWA [3], SAMtools [4]</p></td>
-<td>For mapping SE DNA. <strong>Arguments:</strong> PREFIX, reference genome*, 3‑character taxon identifier, SAMPLE.</td>
+<td>For mapping single-end data. <strong>Arguments:</strong> PREFIX, reference genome<strong>\*</strong>, 3‑character taxon identifier, SAMPLE.</td>
 </tr>
 <tr class="even">
 <td><p>map_modern_PE_0.01mismatch.sh</p>
 <p>Software: BWA [3], SAMtools [4]</p></td>
-<td>For mapping (modern) paired-end data with a BWA mismatch value (-n) of 0.01. <strong>Arguments:</strong> PREFIX, reference genome*, 3‑character taxon identifier, SAMPLE.</td>
+<td>For mapping (modern) paired-end data with a BWA mismatch value (-n) of 0.01. <strong>Arguments:</strong> PREFIX, reference genome<strong>\*</strong>, 3‑character taxon identifier, SAMPLE.</td>
 </tr>
 <tr class="odd">
 <td><p>map_modern_PE.sh</p>
 <p>Software: BWA [3], SAMtools [4]</p></td>
-<td>For mapping modern paired-end data. <strong>Arguments:</strong> PREFIX, reference genome*, 3‑character taxon identifier, SAMPLE.</td>
+<td>For mapping modern paired-end data. <strong>Arguments:</strong> PREFIX, reference genome<strong>\*</strong>, 3‑character taxon identifier, SAMPLE.</td>
 </tr>
 </tbody>
 </table>
 
--   Refers to the folder name in /refgenomes/.
+<strong>\*</strong> Refers to the folder name in /refgenomes/.
 
 <!-- -->
 
@@ -526,22 +520,24 @@ mitochindrial genome provided in /test\_data/:
 
 **References**
 
-1. [Martin M. Cutadapt removes adapter sequences from high-throughput
+1. Martin M. Cutadapt removes adapter sequences from high-throughput
 sequencing reads. EMBnet.journal. 2011;17:
-10.]
+10.
 
-2. [Magoč T, Salzberg SL. FLASH: fast length adjustment of short reads
+2. Magoč T, Salzberg SL. FLASH: fast length adjustment of short reads
 to improve genome assemblies. Bioinformatics. academic.oup.com; 2011;27:
-2957–2963.]
+2957–2963.
 
-3. [Li H, Durbin R. Fast and accurate short read alignment with
+3. Li H, Durbin R. Fast and accurate short read alignment with
 Burrows–Wheeler transform. Bioinformatics. Oxford University Press;
-2009;25: 1754–1760.]
+2009;25: 1754–1760.
 
-4. [Li H, Handsaker B, Wysoker A, Fennell T, Ruan J, Homer N, et al. The
+4. Li H, Handsaker B, Wysoker A, Fennell T, Ruan J, Homer N, et al. The
 Sequence Alignment/Map format and SAMtools. Bioinformatics. 2009;25:
-2078–2079.]
+2078–2079.
 
-5. [Gansauge M-T, Meyer M. Single-stranded DNA library preparation for
+5.  Dabney J, Knapp M, Glocke I, Gansauge M-T, Weihmann A, Nickel B, et al. Complete mitochondrial genome sequence of a Middle Pleistocene cave bear reconstructed from ultrashort DNA fragments. Proc Natl Acad Sci U S A. 2013;110: 15758–15763.
+
+6. Gansauge M-T, Meyer M. Single-stranded DNA library preparation for
 the sequencing of ancient or damaged DNA. Nat Protoc. 2013;8:
-737–748.]
+737–748.

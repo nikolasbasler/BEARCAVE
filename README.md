@@ -391,22 +391,22 @@ mitochindrial genome provided in /test\_data/:
 <tr class="odd">
 <td><p>map_SE.sh</p>
 <p>Software: BWA [3], SAMtools [4]</p></td>
-<td>For mapping single-end data. <strong>Arguments:</strong> PREFIX, reference genome<strong>\*</strong>, 3‑character taxon identifier, SAMPLE.</td>
+<td>For mapping single-end data. <strong>Arguments:</strong> PREFIX, reference genome<strong>*</strong>, 3‑character taxon identifier, SAMPLE.</td>
 </tr>
 <tr class="even">
 <td><p>map_modern_PE_0.01mismatch.sh</p>
 <p>Software: BWA [3], SAMtools [4]</p></td>
-<td>For mapping (modern) paired-end data with a BWA mismatch value (-n) of 0.01. <strong>Arguments:</strong> PREFIX, reference genome<strong>\*</strong>, 3‑character taxon identifier, SAMPLE.</td>
+<td>For mapping (modern) paired-end data with a BWA mismatch value (-n) of 0.01. <strong>Arguments:</strong> PREFIX, reference genome<strong>*</strong>, 3‑character taxon identifier, SAMPLE.</td>
 </tr>
 <tr class="odd">
 <td><p>map_modern_PE.sh</p>
 <p>Software: BWA [3], SAMtools [4]</p></td>
-<td>For mapping modern paired-end data. <strong>Arguments:</strong> PREFIX, reference genome<strong>\*</strong>, 3‑character taxon identifier, SAMPLE.</td>
+<td>For mapping modern paired-end data. <strong>Arguments:</strong> PREFIX, reference genome<strong>*</strong>, 3‑character taxon identifier, SAMPLE.</td>
 </tr>
 </tbody>
 </table>
 
-<strong>\*</strong> Refers to the folder name in /refgenomes/.
+<strong>*</strong> Refers to the folder name in /refgenomes/.
 
 <!-- -->
 

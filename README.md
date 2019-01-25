@@ -564,8 +564,7 @@ mitochindrial genome provided in /test\_data/:
 **References**
 
 1. Martin M. Cutadapt removes adapter sequences from high-throughput
-sequencing reads. EMBnet.journal. 2011;17:
-10.
+sequencing reads. EMBnet.journal. 2011;17:10.
 
 2. Magoč T, Salzberg SL. FLASH: fast length adjustment of short reads
 to improve genome assemblies. Bioinformatics. academic.oup.com; 2011;27:

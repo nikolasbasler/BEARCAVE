@@ -165,24 +165,69 @@ mitochindrial genome provided in /test\_data/:
     out accordingly (view the /scripts/add\_to\_meta.sh for more
     information on the format). Missing data should be inserted as NA.
     For an example metadata file, have a look at /test\_data/BearA.meta.
+    <table>
+    <tr class="header">
+    <td><p><center>SEQ\_RUN</p></td>
+    <td>An identifier for the original file. **SEQ\_RUN has to be the beginning of the file name** (e.g. BearA-01\_S2 for the file in the example above).</td>
+    </tr>
+    <tbody>
+    <tr class="odd">
+    <td><p><center>SAMPLE</p></td>
+    <td>The sample name. Identical to the folder name in /rawdata/.</td>
+    </tr>
+    <tr class="odd">
+    <td><p><center>TAXON</p></td>
+    <td>The samples taxon.</td>
+    </tr>
+    <tr class="odd">
+    <td><center>LOCALITY</p></td>
+    <td>Where the sample has been found.</td>
+    </tr>
+    <tr class="odd">
+    <td><p><center>COUNTRY</p></td>
+    <td>The country the sample is from.</td>
+    </tr>
+    <tr class="odd">
+    <td><p><center>AGE</center></p></td>
+    <td>Modern, historical or ancient.</td>
+    </tr>
+    <tr class="odd">
+    <td><p><center>DATABASE\_NO</center></p></td>
+    <td>If the data has been published, state the accession number here, if not use "unpublished" instead.</td>
+    </tr>
+    <tr class="odd">
+    <td><p><center>LIBRARY\_NO</center></p></td>
+    <td>The library number for internal reference.</td>
+    </tr>
+    <tr class="odd">
+    <td><p><center>EXTRACT\_METH</center></p></td>
+    <td>Method used for DNA extraction (e.g. “Dab” for Dabney \[5\]).</td>
+    </tr>
+    <tr class="odd">
+    <td><p><center>LIBRARY\_METH</p></td>
+    <td>Single-stranded (SS) or double-stranded (DS).</td>
+    </tr>
+    <tr class="odd">
+    <td><p><center>PLATFORM</p></td>
+    <td>The device used for sequencing.</td>
+    </tr><tr class="odd">
+    <td><p><center>READ\_LENGTH</p></td>
+    <td>Maximum read length used during the sequencing run.</td>
+    </tr>
+    <tr class="odd">
+    <td><p><center>MODE</center></p></td>
+    <td>Single-end (SE) or paired-end (PE).  </td>
+    </tr>
+    <tr class="odd">
+    <td><p><center>SEQ\_PRIMER</center></p></td>
+    <td>The primer used for sequencing (e.g. “standard” or CL72 \[5\]).</td>
+    </tr>
+    <tr class="odd">
+    <td><p><center>RIGHTS</center></p></td>
+    <td>Who should be contacted before publishing this data (separate names with an underscore, avoid commas and blank spaces).</td>
+    </tr>
+    </table>
 
-| | |
-|-|-|
-| SEQ\_RUN      | An identifier for the original file. **SEQ\_RUN has to be the beginning of the file name** (e.g. BearA-01\_S2 for the file in the example above). |
-| SAMPLE        | The sample name. Identical to the folder name in /rawdata/.                                                                                       |
-| TAXON         | The sample’s taxon.                                                                                                                               |
-| LOCALITY      | Where the sample has been found.                                                                                                                  |
-| COUNTRY       | The country the sample is from.                                                                                                                   |
-| AGE           | Modern, historical or ancient.                                                                                                                    |
-| DATABASE\_NO  | If the data has been published, state the accession number here, if not use "unpublished" instead.                                                |
-| LIBRARY\_NO   | The library number for internal reference.                                                                                                        |
-| EXTRACT\_METH | Method used for DNA extraction (e.g. “Dab” for Dabney \[5\]).                                                                                           |
-| LIBRARY\_METH | Single-stranded (SS) or double-stranded (DS).                                                                                                     |
-| PLATFORM      | The device used for sequencing.                                                                                                                   |
-| READ\_LENGTH  | Maximum read length used during the sequencing run.                                                                                               |
-| MODE          | Single-end (SE) or paired-end (PE).                                                                                                               |
-| SEQ\_PRIMER   | The primer used for sequencing (e.g. “standard” or CL72 \[5\]).                                                                                         |
-| RIGHTS        | Who should be contacted before publishing this data (separate names with an underscore, avoid commas and blank spaces).                           |
 
 -   To add the content of your table to the BEARCAVE’s metadata file and
     prepare your raw data for further use, navigate to /scripts/ and
@@ -232,13 +277,11 @@ mitochindrial genome provided in /test\_data/:
 -   Navigate to /scripts/ and choose the appropriate trimming script:
 
 <table>
-<thead>
 <tr class="header">
 <td><p>trim_merge_DS_PE_CL72.sh</p>
 <p>Software: Cutadapt [1], FLASH [2]</p></th>
 <td>For trimming and merging double-stranded libraries from a paired-end sequencing run that used the CL72 sequencing primer [6]. <strong>Arguments:</strong> SAMPLE, PREFIX, SEQ_RUN. <strong>Output:</strong> 1 log file for trimming, 1 log file for merging, 3 FASTQ files (mappable_R1.fastq and mappable_R2.fastq contain unmerged reads, mappable.fastq contains merged reads). Process output with a PE mapping script. If your data is from an ancient sample, you may want to delete the unmerged files and consider only merged data. Then the output has to be processed with an SE mapping script.</th>
 </tr>
-</thead>
 <tbody>
 <tr class="odd">
 <td><p>trim_merge_DS_PE_standard.sh</p>

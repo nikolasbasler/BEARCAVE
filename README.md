@@ -153,7 +153,7 @@ mitochindrial genome provided in /test\_data/:
     >**/rawdata/BearA/**
 
 -   Copy your zipped FASTQ files into the new folder. They might look
-    like this (look into /test\_data/ for this example file):
+    like this (this particular example file can be found in /test\_data/):
 
     > **/rawdata/BearA/BearA-01_S2_L001_R1_001.fastq.gz**
 
@@ -245,7 +245,7 @@ mitochindrial genome provided in /test\_data/:
     accidentally be recognised as numbers and automatically change.
 
 -   Note that the prefix has automatically been added to your rawdata
-    file name, which now might look like this (since the prefix is
+    file name, which now might  like this (since the prefix is
     generated randomly, the prefix in your file will very likely be
     different):
 
@@ -384,7 +384,7 @@ mitochindrial genome provided in /test\_data/:
 <tr class="header">
 <td><p>map_SE_0.01mismatch.sh</p>
 <p>Software: BWA [3], SAMtools [4]</p></th>
-<td>For mapping single-end data with a BWA mismatch value (-n) of 0.01. <strong>Arguments:</strong> PREFIX, reference genome<strong>\*</strong>, 3‑character taxon identifier, SAMPLE.</th>
+<td>For mapping single-end data with a BWA mismatch value (-n) of 0.01. <strong>Arguments:</strong> PREFIX, reference genome<strong>*</strong>, 3‑character taxon identifier, SAMPLE.</th>
 </tr>
 </thead>
 <tbody>

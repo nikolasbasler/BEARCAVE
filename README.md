@@ -167,8 +167,8 @@ mitochindrial genome provided in /test\_data/:
     For an example metadata file, have a look at /test\_data/BearA.meta.
     <table>
     <tr class="header">
-    <td><p><center>SEQ\_RUN</p></td>
-    <td>An identifier for the original file. **SEQ\_RUN has to be the beginning of the file name** (e.g. BearA-01\_S2 for the file in the example above).</td>
+    <td><p><center>SEQ_RUN</p></td>
+    <td>An identifier for the original file. <b> SEQ_RUN has to be the beginning of the file name</b> (e.g. BearA-01_S2 for the file in the example above).</td>
     </tr>
     <tbody>
     <tr class="odd">
@@ -192,26 +192,26 @@ mitochindrial genome provided in /test\_data/:
     <td>Modern, historical or ancient.</td>
     </tr>
     <tr class="odd">
-    <td><p><center>DATABASE\_NO</center></p></td>
+    <td><p><center>DATABASE_NO</center></p></td>
     <td>If the data has been published, state the accession number here, if not use "unpublished" instead.</td>
     </tr>
     <tr class="odd">
-    <td><p><center>LIBRARY\_NO</center></p></td>
+    <td><p><center>LIBRARY_NO</center></p></td>
     <td>The library number for internal reference.</td>
     </tr>
     <tr class="odd">
-    <td><p><center>EXTRACT\_METH</center></p></td>
-    <td>Method used for DNA extraction (e.g. “Dab” for Dabney \[5\]).</td>
+    <td><p><center>EXTRACT_METH</center></p></td>
+    <td>Method used for DNA extraction (e.g. “Dab” for Dabney [5]).</td>
     </tr>
     <tr class="odd">
-    <td><p><center>LIBRARY\_METH</p></td>
+    <td><p><center>LIBRARY_METH</p></td>
     <td>Single-stranded (SS) or double-stranded (DS).</td>
     </tr>
     <tr class="odd">
     <td><p><center>PLATFORM</p></td>
     <td>The device used for sequencing.</td>
     </tr><tr class="odd">
-    <td><p><center>READ\_LENGTH</p></td>
+    <td><p><center>READ_LENGTH</p></td>
     <td>Maximum read length used during the sequencing run.</td>
     </tr>
     <tr class="odd">
@@ -219,8 +219,8 @@ mitochindrial genome provided in /test\_data/:
     <td>Single-end (SE) or paired-end (PE).  </td>
     </tr>
     <tr class="odd">
-    <td><p><center>SEQ\_PRIMER</center></p></td>
-    <td>The primer used for sequencing (e.g. “standard” or CL72 \[5\]).</td>
+    <td><p><center>SEQ_PRIMER</center></p></td>
+    <td>The primer used for sequencing (e.g. “standard” or CL72 [5]).</td>
     </tr>
     <tr class="odd">
     <td><p><center>RIGHTS</center></p></td>

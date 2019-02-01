@@ -24,7 +24,7 @@ class="underline">https://conda.io/docs/index.html</span>](https://conda.io/docs
 read removal, FLASH \[2\] for merging paired-end reads, BWA \[3\] for
 mapping to a reference genome and SAMtools \[4\] for sorting, quality
 filtering and duplicate removal. It therefore can be easily used on multiple servers or systems, while ensuring
-consistent results across systems and also also provides a simple user-friendly
+consistent results across systems and also provides a simple user-friendly
 method for inserting and archiving raw data files. The generated results and processed data files are stored within a logical folder structure to provide a framework
 for collective research work. Moreover, all datasets
 are automatically assigned with a unique identification code such that

@@ -19,7 +19,7 @@
 
 
 # variable used for mapping
-MAPQ=30		# Minimum read mapping quality: 
+MAPQ=30		# Minimum read mapping quality:
 Mismatch=0.01	# Mismatch threshold
 threads=10	# no. of computer cores used by bwa and samtools
 ram=16G		# GB of RAM per cpu

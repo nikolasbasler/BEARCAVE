@@ -113,7 +113,7 @@ modified or new scripts added should additional functions be required.
 
 **BEARCAVE/**
 - **rawdata/**
-- **old\_metadata/**
+- - **old\_metadata/**
 - **refgenomes/**
 - **scripts/**
 - **software/**

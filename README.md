@@ -99,17 +99,17 @@ modified or new scripts added should additional functions be required.
     class="underline">https://github.com/nikolasbasler/BEARCAVE</span>](https://github.com/nikolasbasler/BEARCAVE)),
     copy it into a folder of your choice and extract it:
 
-    `tar -zxvf BEARCAVE_v*tar.gz` This will create a new folder called BEARCAVE.
+    `unzip BEARCAVE-master.zip` This will create a new folder called BEARCAVE-master.
 
--   Navigate to BEARCAVE/ and execute the installation script:
+-   Navigate to BEARCAVE-master/ and execute the installation script:
 
     `./install.sh`
 
 -   You will have to accept the licence agreement of Miniconda and and
     otherwise confirm the default settings by hitting ENTER.
 
--   After the installation is done, you will find the software, scripts
-    and the following sub-folder structure within BEARCAVE/:
+-   After the installation is done, the folder will be renamed to BEARCAVE and within it, you will find the software, scripts
+    and the following sub-folder structure:
 
 **BEARCAVE/**
 - **rawdata/**

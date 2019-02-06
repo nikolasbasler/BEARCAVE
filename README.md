@@ -245,7 +245,7 @@ mitochindrial genome provided in /test\_data/:
     accidentally be recognised as numbers and automatically change.
 
 -   Note that the prefix has automatically been added to your rawdata
-    file name, which now might  like this (since the prefix is
+    file name (followed by a plus (+) symbol), which now might  like this (since the prefix is
     generated randomly, the prefix in your file will very likely be
     different):
 
@@ -356,7 +356,7 @@ mitochindrial genome provided in /test\_data/:
 -   The combined output file can be found in a "processing" folder in
     /trimdata/.
 
--   The order of prefixes in the file name reflects the order of the
+-   The prifixes of the original files are all added to the combined file name of the combined file, divided by an underscore ( _ ) and the order of prefixes in the file name reflects the order of the
     sequences in the file.
 
 -   Move the combined file one folder up into /trimdata/ and delete the

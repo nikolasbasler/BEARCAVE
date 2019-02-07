@@ -459,7 +459,8 @@ mitochindrial genome provided in /test\_data/:
 -   This will generate a comma separated table that lists all samples
     and prefixes associated with them and if they have been trimmed
     and/or mapped to the references or not (based on the existence of
-    files in the respective "mapped" folders): **/state\_of\_the\_cave.txt**
+    files in the respective "mapped" folders):
+    >**/state\_of\_the\_cave.txt**
 
 -   When opening the table in a spreadsheet viewer (such as LibreOffice
     Calc), make sure to “format quoted fields as text”, otherwise some
@@ -467,6 +468,15 @@ mitochindrial genome provided in /test\_data/:
     automatically change.
 
 **Quick Guide for Repeated Use**
+
+**Exile from Cave (optional)**
+
+-   If you wish to delete a dataset, navigate to /scripts/ and execute the exile_from_cave.sh with the prifix of the dataset that is to be removed as an argument.
+
+  `./exile_from_cave.sh pr1`
+
+-   The script will automatically search for files with this prefix and for the entry in the metadata.txt and ask in each case if the files/entry should be deleted.
+
 
 -   **Inserting data:**
 
@@ -560,6 +570,8 @@ mitochindrial genome provided in /test\_data/:
         state_of_the_cave.txt) that lists all samples and prefixes
         associated with them and if they have been trimmed and/or mapped
         to the references or not.
+
+
 
 **References**
 

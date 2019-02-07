@@ -1,7 +1,14 @@
 #!/bin/bash
 # October 2018
 
+## This script will search for files with the given prefix in their file name
+## and the corresponding entry in metadata.txt and ask the user in each case
+## whether the files/entry should be deleted or not.
+
+
+# usage: ./exile_from_cave.sh $1
 # $1 = Prefix
+
 
 if [ "$#" -ne 1 ]; then
     echo "Illegal number of parameters."
@@ -9,7 +16,7 @@ if [ "$#" -ne 1 ]; then
 else
 	echo ''
 	echo '---------------------------------------'
-	
+
 	num_mapped=$(find ../mapped* -name "*${1}*" | wc -l)
 	if [ "$num_mapped" -eq "0" ]; then
 		echo "No mapping files files have been found."
@@ -24,8 +31,8 @@ else
 				find ../mapped* -name "*${1}*" -exec rm -r {} +
 				echo "Mapping files deleted."
 				break;;
-		
-				Keep ) 
+
+				Keep )
 				echo "Mapping files kept."
 				break;
 			esac
@@ -48,8 +55,8 @@ else
 				find ../trimdata -name "*${1}*" -exec rm -r {} +
 				echo "Trimming files deleted."
 				break;;
-		
-				Keep ) 
+
+				Keep )
 				echo "Trimming files kept."
 				break;
 			esac
@@ -72,8 +79,8 @@ else
 				find ../rawdata -name "*${1}*" -exec rm -r {} +
 				echo "Raw files deleted."
 				break;;
-		
-				Keep ) 
+
+				Keep )
 				echo "Raw files kept."
 				break;
 			esac
@@ -97,8 +104,8 @@ else
 				chmod u+w ../rawdata/metadata.txt
 				sed -i "/$1/d" ../rawdata/metadata.txt
 				chmod u-w ../rawdata/metadata.txt
-				
-				
+
+
 				### A backup copy of the edited metadata file is being created.
 				dat=$(date +%Y-%m-%d_%H.%M_)
 				backup=$dat$USER
@@ -106,15 +113,15 @@ else
 				chmod u+w ../rawdata/old_metadata/
 				cp ../rawdata/metadata.txt ../rawdata/old_metadata/$backup
 				chmod 440 ../rawdata/old_metadata/$backup
-				chmod u-w ../rawdata/old_metadata/	
-				
-				
-				
+				chmod u-w ../rawdata/old_metadata/
+
+
+
 				echo "$num_meta lines have been deleted from ../rawdata/metadata.txt"
 				echo "A backup was copied to ../rawdata/old_metadata/$backup"
 				break;;
-		
-				Keep ) 
+
+				Keep )
 				echo "Metadata left unchanged."
 				break;
 			esac

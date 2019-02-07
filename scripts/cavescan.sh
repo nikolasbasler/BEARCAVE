@@ -80,7 +80,7 @@ for f in ${raw_folders[@]} ; do
 			fi
 
 			# Check if prefix exists in any file name in /trimdata. And add "yes" or "no" into next column.
-			in_trim=$(ls -1 ../trimdata | grep $prefix | wc -l)
+			in_trim=$(ls -1 ../trimdata | grep "+" | cut -d'+' -f1 | grep $prefix | wc -l)
 			if [ "$in_trim" == "0" ] ; then
 				trimmed="no"
 			else
@@ -90,7 +90,7 @@ for f in ${raw_folders[@]} ; do
 
 			# Do the same for all 'mapped' folders.
 			for mf in ${mapped_folders[@]}; do
-				in_mapped=$(ls -1 ../$mf | grep $prefix | wc -l)
+				in_mapped=$(ls -1 ../$mf | grep "+" | cut -d'+' -f1 | grep $prefix | wc -l)
 				if [ "$in_mapped" == "0" ] ; then
 					mapped="no"
 				else

@@ -97,11 +97,11 @@ modified or new scripts added should additional functions be required.
 
 -   Download the BEARCAVE package from GitHub ([<span
     class="underline">https://github.com/nikolasbasler/BEARCAVE</span>](https://github.com/nikolasbasler/BEARCAVE)),
-    copy it into a folder of your choice and extract it:
+    copy it into a folder accessible to all future BEARCAVE users and extract it:
 
     `unzip BEARCAVE-master.zip` This will create a new folder called BEARCAVE-master.
 
--   Navigate to BEARCAVE-master/ and execute the installation script:
+-   Navigate to BEARCAVE-master/ and execute the installation script. Note that future BEARCAVE users will have to be in the same user group as the installing user.
 
     `./install.sh`
 

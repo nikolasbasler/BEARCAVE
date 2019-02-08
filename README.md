@@ -18,9 +18,9 @@ each individual’s home directories or local systems.
 The BEARCAVE provides an environment for establishing and maintaining
 such a shared data repository. The BEARCAVE distribution includes all
 necessary scripts and will automatically download and install the
-necessary software via the Miniconda package and environment manager
+necessary software via the Miniconda3 package and environment manager
 ([<span
-class="underline">https://conda.io/docs/index.html</span>](https://conda.io/docs/index.html)): Cutadapt \[1\] for adapter trimming and short
+class="underline">https://docs.conda.io/en/latest/miniconda.html</span>](https://docs.conda.io/en/latest/miniconda.html)): Cutadapt \[1\] for adapter trimming and short
 read removal, FLASH \[2\] for merging paired-end reads, BWA \[3\] for
 mapping to a reference genome and SAMtools \[4\] for sorting, quality
 filtering and duplicate removal. It therefore can be easily used on multiple servers or systems, while ensuring
@@ -105,7 +105,7 @@ modified or new scripts added should additional functions be required.
 
     `./install.sh`
 
--   You will have to accept the licence agreement of Miniconda and and
+-   You will have to accept the licence agreement of Miniconda3 and
     otherwise confirm the default settings by hitting ENTER.
 
 -   After the installation is done, the folder will be renamed to BEARCAVE and within it, you will find the software, scripts
@@ -189,7 +189,7 @@ mitochindrial genome provided in /test\_data/:
     </tr>
     <tr class="odd">
     <td><p><center>AGE</center></p></td>
-    <td>Modern, historical or ancient.</td>
+    <td>"modern", "historical" or "ancient".</td>
     </tr>
     <tr class="odd">
     <td><p><center>DATABASE_NO</center></p></td>
@@ -205,7 +205,7 @@ mitochindrial genome provided in /test\_data/:
     </tr>
     <tr class="odd">
     <td><p><center>LIBRARY_METH</p></td>
-    <td>Single-stranded (SS) or double-stranded (DS).</td>
+    <td>Single-stranded ("SS") or double-stranded ("DS").</td>
     </tr>
     <tr class="odd">
     <td><p><center>PLATFORM</p></td>
@@ -216,11 +216,11 @@ mitochindrial genome provided in /test\_data/:
     </tr>
     <tr class="odd">
     <td><p><center>MODE</center></p></td>
-    <td>Single-end (SE) or paired-end (PE).  </td>
+    <td>Single-end ("SE") or paired-end ("PE").  </td>
     </tr>
     <tr class="odd">
     <td><p><center>SEQ_PRIMER</center></p></td>
-    <td>The primer used for sequencing (e.g. “standard” or CL72 [5]).</td>
+    <td>The primer used for sequencing (e.g. “standard” or "CL72" [5]).</td>
     </tr>
     <tr class="odd">
     <td><p><center>RIGHTS</center></p></td>
@@ -467,16 +467,16 @@ mitochindrial genome provided in /test\_data/:
     identifiers might accidentally be recognised as numbers and
     automatically change.
 
-**Quick Guide for Repeated Use**
 
 **Exile from Cave (optional)**
 
--   If you wish to delete a dataset, navigate to /scripts/ and execute the exile_from_cave.sh with the prifix of the dataset that is to be removed as an argument.
+-   If you wish to delete a dataset, navigate to /scripts/ and execute the exile_from_cave.sh with the prefix of the dataset that is to be removed as an argument.
 
   `./exile_from_cave.sh pr1`
 
 -   The script will automatically search for files with this prefix and for the entry in the metadata.txt and ask in each case if the files/entry should be deleted.
 
+**Quick Guide for Repeated Use**
 
 -   **Inserting data:**
 

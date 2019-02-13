@@ -88,10 +88,11 @@ modified or new scripts added should additional functions be required.
 
 **Known issues**
 
--   Having multiple identical and simultaneously running jobs (i.e.
-    identical scripts and identical input data) will overwrite each
+-   Having multiple trimming jobs with identical read length cutoff run on the same sample or multiple mapping jobs run on the same prefixed datasets will overwrite each
     other’s output files and therefore break them. This is also true
-    if the jobs are issued by different users.
+    if the jobs are issued by different users. If you need to restart a job that is still running, cancel it properly first.
+
+-   Datasets combined with combine_files.sh can have very long file names. Most file systems have an upper limit for file name lengths of 255 characters. If you combine more than 50 datasets into one file, this may become problematic.
 
 **Installation**
 

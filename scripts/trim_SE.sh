@@ -22,8 +22,10 @@ chmod u+w ../trimdata/$1_processing/$2+$1* 2> /dev/null
 # concatenate raw fastq files
 zcat ../rawdata/$1/$2+$3*R1*.fastq.gz > ../trimdata/$1_processing/$2+$1_R1.fastq
 
+echo "Script: trim_SE.sh" > ../trimdata/$1_processing/$2+$1_trim_report.log
+
 # trim adaptor seqs and short seqs from R1
-../software/miniconda3/bin/cutadapt -a AGATCGGAAGAGCACACGTC -O 1 -m $minlength -o ../trimdata/$1_processing/$2+$1_mappable.fastq ../trimdata/$1_processing/$2+$1_R1.fastq > ../trimdata/$1_processing/$2+$1_trim_report.log
+../software/miniconda3/bin/cutadapt -a AGATCGGAAGAGCACACGTC -O 1 -m $minlength -o ../trimdata/$1_processing/$2+$1_mappable.fastq ../trimdata/$1_processing/$2+$1_R1.fastq >> ../trimdata/$1_processing/$2+$1_trim_report.log
 
 # zip the output
 gzip ../trimdata/$1_processing/$2+$1_mappable.fastq

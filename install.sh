@@ -1,5 +1,5 @@
 #!/bin/bash
-# December 2018
+# March 2019
 
 
 mkdir rawdata/old_metadata
@@ -8,15 +8,29 @@ mkdir trimdata
 mkdir trimdata/trimlogs
 mkdir refgenomes
 
+
 cd software
 
-echo "---------- DOWNLOADING MINICONDA3 4.5.11 -----------"
-wget https://repo.continuum.io/miniconda/Miniconda3-4.5.11-Linux-x86_64.sh
-chmod u+x Miniconda3-4.5.11-Linux-x86_64.sh
+if [[ "$OSTYPE" == "linux"* ]]; then
 
-echo "---------- INSTALLING MINICONDA3 -----------"
-./Miniconda3-4.5.11-Linux-x86_64.sh -f -p $PWD/miniconda3
+  echo "---------- DOWNLOADING MINICONDA3 4.5.11 for Linux -----------"
+  wget https://repo.continuum.io/miniconda/Miniconda3-4.5.11-Linux-x86_64.sh
+  chmod u+x Miniconda3-4.5.11-Linux-x86_64.sh
 
+  echo "---------- INSTALLING MINICONDA3 for Linux -----------"
+  ./Miniconda3-4.5.11-Linux-x86_64.sh -f -p $PWD/miniconda3;
+
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+  echo "---------- DOWNLOADING MINICONDA3 4.5.11 for macOS -----------"
+  curl https://repo.continuum.io/miniconda/Miniconda3-4.5.11-MacOSX-x86_64.sh -o Miniconda3-4.5.11-MacOSX-x86_64.sh
+  chmod u+x Miniconda3-4.5.11-MacOSX-x86_64.sh
+
+  echo "---------- INSTALLING MINICONDA3 for macOS -----------"
+  ./Miniconda3-4.5.11-MacOSX-x86_64.sh -f -p $PWD/miniconda3;
+else
+  echo "---------- Operatingsystem not supported -----------"
+  exit
+fi
 
 echo "---------- INSTALLING CUTADAPT 1.12 -----------"
 ./miniconda3/bin/conda install -y -f -c bioconda cutadapt=1.12
@@ -63,5 +77,3 @@ echo "---------- BEARCAVE INSTALLATION COMPLETE -----------"
 echo -e '\n'
 echo "You may want to update your working directory by navigating one folder up and back into BEARCAVE/"
 echo -e '\n'
-
-

@@ -78,7 +78,7 @@ modified or new scripts added should additional functions be required.
     the appropriate scripts.
 
 -   The BEARCAVE was tested for Scientific Linux 6.10, Fedora 29, Debian
-    9 stretch, Ubuntu 16.04 and Ubuntu 18.04.
+    9 stretch, Ubuntu 16.04, Ubuntu 18.04 and MacOS 10.14.4 (Mojave).
 
 -   Permissions are automatically set so that only members of the
     installer’s user group can use and access the BEARCAVE.
@@ -260,6 +260,17 @@ mitochindrial genome provided in /test\_data/:
 
 -   You can add several datasets at once. Simply include a line for each
     dataset in the table you have created.
+
+-   If you ever need to manipulate the the metadata.txt manually, follow this process:
+
+    - Copy the metadata file somewhere else, e.g. your home directory.    
+    - Grant yourself write permission over the copy (chmod u+w).
+    - Maipulate the copy as needed.
+    - Replace the original rawdata/metadata.txt file with your manipulated copy.
+    - Remove the write permissions from the new metadata file (chmod u-w).
+    - Make a backup of the metadata file (navigate to the rawdata/ folder and enter the following command as is):
+
+      `cp metadata.txt old_metadata/$(date +%Y-%m-%d_%H.%M)"_"$USER"_manual_edit".txt`
 
 **Trimming (and paired-end merging)**
 

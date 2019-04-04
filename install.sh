@@ -1,6 +1,7 @@
 #!/bin/bash
 # March 2019
 
+#
 
 mkdir rawdata/old_metadata
 mkdir software

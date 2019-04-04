@@ -1,8 +1,6 @@
 #!/bin/bash
 # March 2019
 
-#
-
 mkdir rawdata/old_metadata
 mkdir software
 mkdir trimdata
@@ -52,7 +50,6 @@ echo "---------- SETTING PERMISSIONS -----------"
 chmod 770 .
 
 chmod 440 install.sh
-chmod 440 version_info.txt
 
 chmod -R a-w software/
 chmod -R o-rx software/

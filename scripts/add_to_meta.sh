@@ -103,7 +103,7 @@ if ! [ "$broken" = true ]; then
 			for f in $seqrun*.gz; do
 
 				## If one of the file names already containes a + the process is being aborted.
-				pluses=$(ls -1 | grep $seqrun | grep '+' | wc -l)
+				pluses=$(ls -1 | grep $seqrun | grep '+' | grep -v $prefix | wc -l)
 				if ! [ "$pluses" == "0" ] ; then
 					echo -e "ERROR: At least one file name of $seqrun contains a +. This is not allowed. A possible reason might be that $seqrun is already in the system.\nProcess aborted in line $((m+1)) of the input file.\nPlease carefully check what went wrong and view the ../rawdata/metadata.txt to see which data has been incorporated before you add the rest (possibly with a new input file).\n"
 					broken=true

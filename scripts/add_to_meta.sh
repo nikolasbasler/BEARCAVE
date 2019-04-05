@@ -9,14 +9,14 @@
 ### for the first column (PREFIX), like so:
 ### SEQ_RUN,SAMPLE,TAXON,LOCALITY,COUNTRY,AGE,DATABASE_NO,LIBRARY_NO,EXTRACT_METH,LIBRARY_METH,PLATFORM,READ_LENGTH,MODE,SEQ_PRIMER,RIGHTS
 ### Using special characters in the input file should mostly be ok, although you should
-### double-check the outcome if you use anything beyond the ordinary. 
+### double-check the outcome if you use anything beyond the ordinary.
 ### Things you should definitely not use are commas, semicolons and backslashes!
 ### Missing data should be entered as NA.
-### 
-### The rawdata file names must not contain a + (plus) and are automatically renamed 
+###
+### The rawdata file names must not contain a + (plus) and are automatically renamed
 ### to get a random three-character prefix (base36 number), followed by a +.
 ###
-### A backup copy of the edited metadata file is being stored under 
+### A backup copy of the edited metadata file is being stored under
 ### ../rawdata/old_metadata/YEAR-MONTH-DAY_HOUR.MINUTE_USER.txt
 
 ### This script grew in length and complexity over time which means it works very
@@ -67,8 +67,8 @@ done < "$1"
 if ! [ "$broken" = true ]; then
 	m=0
 	while (( $m < ${#checked_lines[@]} )); do
-	
-	
+
+
 		######### Random three-characters prefix is generated here. ####################################
 		chars=0123456789abcdefghijkLmnopqrstuvwxyz
 		while true; do
@@ -81,7 +81,7 @@ if ! [ "$broken" = true ]; then
 			## This checks if the generated prefix already exists in the first column of the metadata.txt
 			## If it exists, the "unique" variable is set to false and therefore the above while loop
 			## continues, generating a new prefix that is again checked.
-			while IFS='' read -r metadata_line ; do 
+			while IFS='' read -r metadata_line ; do
 				meta_entry=$(echo $metadata_line | cut -d',' -f1 | sed -e 's/"/''/g')
 				if [ "$meta_entry" == $prefix ]; then
 					unique=false
@@ -94,16 +94,16 @@ if ! [ "$broken" = true ]; then
 			fi
 		done
 		###################################################################################################
-		
+
 		###################### File renaiming ############################
-		sample_name=$(echo "${checked_lines[$m]}" | cut -d',' -f2)		
+		sample_name=$(echo "${checked_lines[$m]}" | cut -d',' -f2)
 		seqrun=$(echo "${checked_lines[$m]}" | cut -d',' -f1)
-	
+
 		if cd ../rawdata/$sample_name; then
-			for f in $seqrun*.gz; do 
-			
+			for f in $seqrun*.gz; do
+
 				## If one of the file names already containes a + the process is being aborted.
-				pluses=$(ls -l | grep $seqrun* | grep + | wc -l)
+				pluses=$(ls -1 | grep $seqrun | grep '+' | wc -l)
 				if ! [ "$pluses" == "0" ] ; then
 					echo -e "ERROR: At least one file name of $seqrun contains a +. This is not allowed. A possible reason might be that $seqrun is already in the system.\nProcess aborted in line $((m+1)) of the input file.\nPlease carefully check what went wrong and view the ../rawdata/metadata.txt to see which data has been incorporated before you add the rest (possibly with a new input file).\n"
 					broken=true
@@ -128,11 +128,11 @@ if ! [ "$broken" = true ]; then
 		fi
 		echo ""
 		#################################################################
-		
-		
+
+
 		if ! [ "$broken" = true ]; then
 		    quoted_line=$(echo ${checked_lines[$m]} | sed 's/^/"/' | sed 's/$/"/' | sed 's/,/","/g')
-		    
+
 		    cp ../rawdata/metadata.txt ../rawdata/temp.meta
 		    chmod u+w ../rawdata/temp.meta
 		    echo "\"$prefix\",$quoted_line" >> ../rawdata/temp.meta
@@ -141,7 +141,7 @@ if ! [ "$broken" = true ]; then
 
     		#echo "\"$prefix\",$quoted_line" >> ../rawdata/metadata.txt
 		fi
-		
+
 		m=$((m+1))
 	done
 

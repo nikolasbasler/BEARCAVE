@@ -1,6 +1,15 @@
 #!/bin/bash
 # March 2019
 
+echo "---------- CHANGING FOLDER NAME FROM BEARCAVE-master TO BEARCAVE -----------"
+
+cd ..
+mv BEARCAVE-master/ BEARCAVE/
+cd BEARCAVE/
+
+echo "---------- CREATING SUBFOLDER STRUCTURE -----------"
+
+
 mkdir rawdata/old_metadata
 mkdir software
 mkdir trimdata
@@ -64,11 +73,6 @@ chmod -R 770 trimdata/
 
 chmod 770 refgenomes/
 
-echo "---------- CHANGING FOLDER NAME FROM BEARCAVE-master TO BEARCAVE -----------"
-
-cd ..
-mv BEARCAVE-master/ BEARCAVE/
-cd BEARCAVE/
 
 
 echo "---------- BEARCAVE INSTALLATION COMPLETE -----------"

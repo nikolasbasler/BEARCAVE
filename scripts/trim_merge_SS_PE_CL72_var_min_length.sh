@@ -1,6 +1,6 @@
 #!/bin/bash
 # November 2018
-
+softdir=../software/miniconda3/envs/py35/bin
 # script for trimming adapter sequences from SS library PE data, removing short reads of user defined length, and merging overlapping PE reads.
 
 # this script should be run from /BEARCAVE/scripts
@@ -29,10 +29,10 @@ echo "Script: trim_merge_SS_PE_CL72_var_min_length.sh - Minimum read length: $4 
 
 
 # trim adaptor seqs and short seqs from R1 and R2
-../software/miniconda3/bin/cutadapt -a AGATCGGAAGAGCACACGTC -A GGAAGAGCGTCGTGTAGGGA -O 1 -m $4 -o ../trimdata/$1_$4bp_processing/$2+$1_$4bp_trim_R1.fastq -p ../trimdata/$1_$4bp_processing/$2+$1_$4bp_trim_R2.fastq ../trimdata/$1_$4bp_processing/$2+$1_$4bp_R1.fastq ../trimdata/$1_$4bp_processing/$2+$1_$4bp_R2.fastq >> ../trimdata/$1_$4bp_processing/$2+$1_$4bp_trim_report.log
+$softdir/cutadapt -a AGATCGGAAGAGCACACGTC -A GGAAGAGCGTCGTGTAGGGA -O 1 -m $4 -o ../trimdata/$1_$4bp_processing/$2+$1_$4bp_trim_R1.fastq -p ../trimdata/$1_$4bp_processing/$2+$1_$4bp_trim_R2.fastq ../trimdata/$1_$4bp_processing/$2+$1_$4bp_R1.fastq ../trimdata/$1_$4bp_processing/$2+$1_$4bp_R2.fastq >> ../trimdata/$1_$4bp_processing/$2+$1_$4bp_trim_report.log
 
 # merge R1 and R2, set max overlap (-M) to 75bp as most ancient frags should be mergeable
-../software/miniconda3/bin/flash -M 75 -t $threads -d ../trimdata/$1_$4bp_processing -o $2+$1_$4bp ../trimdata/$1_$4bp_processing/$2+$1_$4bp_trim_R1.fastq ../trimdata/$1_$4bp_processing/$2+$1_$4bp_trim_R2.fastq >> ../trimdata/$1_$4bp_processing/$2+$1_$4bp_merge_report.log
+$softdir/flash -M 75 -t $threads -d ../trimdata/$1_$4bp_processing -o $2+$1_$4bp ../trimdata/$1_$4bp_processing/$2+$1_$4bp_trim_R1.fastq ../trimdata/$1_$4bp_processing/$2+$1_$4bp_trim_R2.fastq >> ../trimdata/$1_$4bp_processing/$2+$1_$4bp_merge_report.log
 
 # clean up unnecessary files
 # here I am assuming ancient DNA data and discarding the non-overlapping PE reads

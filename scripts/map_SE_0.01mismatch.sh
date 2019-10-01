@@ -13,6 +13,8 @@
 # $3 = 3 character taxon identifier, used for filenaming - e.g. arc, spe, kud, mar.
 # $4 = sample name
 
+softdir=../software/miniconda3/envs/py35/bin
+
 # variables used for mapping
 MAPQ=30		# Minimum read mapping quality: 
 Mismatch=0.01	# Mismatch threshold
@@ -32,20 +34,20 @@ chmod u+w ../mapped$2/$1+$4_$2_map_processing/$1+$4_$3_$2* 2> /dev/null
 zcat ../trimdata/$1+$4_mappable.fastq.gz > ../mapped$2/$1+$4_$2_map_processing/$1+$4_mappable.fastq
 
 # Mapping: bwa aln, samse, samtools view and sort
-../software/miniconda3/bin/bwa aln -n $Mismatch -t $threads ../refgenomes/$2/*.fa ../mapped$2/$1+$4_$2_map_processing/$1+$4_mappable.fastq | ../software/miniconda3/bin/bwa samse ../refgenomes/$2/*.fa - ../mapped$2/$1+$4_$2_map_processing/$1+$4_mappable.fastq | ../software/miniconda3/bin/samtools view -Su -q $MAPQ -@ $threads - | ../software/miniconda3/bin/samtools sort -@ $threads -m $ram -T ../mapped$2/$1+$4_$2_map_processing/$1+$4_temp -o ../mapped$2/$1+$4_$2_map_processing/$1+$4_$2_sorted.bam -
+$softdir/bwa aln -n $Mismatch -t $threads ../refgenomes/$2/*.fa ../mapped$2/$1+$4_$2_map_processing/$1+$4_mappable.fastq | $softdir/bwa samse ../refgenomes/$2/*.fa - ../mapped$2/$1+$4_$2_map_processing/$1+$4_mappable.fastq | $softdir/samtools view -Su -q $MAPQ -@ $threads - | $softdir/samtools sort -@ $threads -m $ram -T ../mapped$2/$1+$4_$2_map_processing/$1+$4_temp -o ../mapped$2/$1+$4_$2_map_processing/$1+$4_$2_sorted.bam -
 
 # zip trimmed reads
 #gzip ../trimdata/$1+$4_mappable.fastq
 rm ../mapped$2/$1+$4_$2_map_processing/$1+$4_mappable.fastq
 
 # samtools index 
-../software/miniconda3/bin/samtools index ../mapped$2/$1+$4_$2_map_processing/$1+$4_$2_sorted.bam
+$softdir/samtools index ../mapped$2/$1+$4_$2_map_processing/$1+$4_$2_sorted.bam
 
 # samtools rmdup
-../software/miniconda3/bin/samtools rmdup -s ../mapped$2/$1+$4_$2_map_processing/$1+$4_$2_sorted.bam ../mapped$2/$1+$4_$2_map_processing/$1+$4_$2_rmdup.bam
+$softdir/samtools rmdup -s ../mapped$2/$1+$4_$2_map_processing/$1+$4_$2_sorted.bam ../mapped$2/$1+$4_$2_map_processing/$1+$4_$2_rmdup.bam
 
 # samtools index 
-../software/miniconda3/bin/samtools index ../mapped$2/$1+$4_$2_map_processing/$1+$4_$2_rmdup.bam
+$softdir/samtools index ../mapped$2/$1+$4_$2_map_processing/$1+$4_$2_rmdup.bam
 
 
 ### mapping log ###
@@ -56,13 +58,13 @@ log=../mapped$2/$1+$4_$2_map_processing/"$1+$4"_"$2"_mapping.log
 # gather stats
 date=$(date +"%d-%m-%Y")
 mappable="$(zcat ../trimdata/$1+$4_mappable.fastq.gz | wc -l | awk '{sum=$1/4; print sum}')"
-mapped="$(../software/miniconda3/bin/samtools idxstats ../mapped$2/$1+$4_$2_map_processing/$1+$4_$2_sorted.bam | awk 'BEGIN {a=0} {a += $3} END{print a}')"
-uniq="$(../software/miniconda3/bin/samtools idxstats ../mapped$2/$1+$4_$2_map_processing/$1+$4_$2_rmdup.bam | awk 'BEGIN {a=0} {a += $3} END{print a}')"
+mapped="$($softdir/samtools idxstats ../mapped$2/$1+$4_$2_map_processing/$1+$4_$2_sorted.bam | awk 'BEGIN {a=0} {a += $3} END{print a}')"
+uniq="$($softdir/samtools idxstats ../mapped$2/$1+$4_$2_map_processing/$1+$4_$2_rmdup.bam | awk 'BEGIN {a=0} {a += $3} END{print a}')"
 endo="$(echo "scale=5 ; $uniq / $mappable" | bc)"
 propuniq="$(echo "scale=5 ; $uniq / $mapped" | bc)"
 duprate="$(echo "scale=5 ; 1 - $propuniq" | bc)"
-depth="$(../software/miniconda3/bin/samtools depth ../mapped$2/$1+$4_$2_map_processing/$1+$4_$2_rmdup.bam | awk '{sum+=$3;cnt++}END{print sum/cnt}')"
-map_bp="$(../software/miniconda3/bin/samtools depth ../mapped$2/$1+$4_$2_map_processing/$1+$4_$2_rmdup.bam | awk '{sum+=$3;cnt++}END{print sum}')"
+depth="$($softdir/samtools depth ../mapped$2/$1+$4_$2_map_processing/$1+$4_$2_rmdup.bam | awk '{sum+=$3;cnt++}END{print sum/cnt}')"
+map_bp="$($softdir/samtools depth ../mapped$2/$1+$4_$2_map_processing/$1+$4_$2_rmdup.bam | awk '{sum+=$3;cnt++}END{print sum}')"
 map_Gb="$(echo "scale=5 ; $map_bp / 1000000000" | bc)"
 
 # print to log file

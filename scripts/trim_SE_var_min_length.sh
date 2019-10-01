@@ -1,6 +1,6 @@
 #!/bin/bash
 # November 2018
-
+softdir=../software/miniconda3/envs/py35/bin
 # script for trimming adapter sequences from SE data and removing short reads of variable length.
 
 # this script should be run from /BEARCAVE/scripts
@@ -23,7 +23,7 @@ zcat ../rawdata/$1/$2+$3*R1*.fastq.gz > ../trimdata/$1_$4bp_processing/$2+$1_R1.
 echo "Script: trim_SE_var_min_length.sh - Minimum read length: $4 bp" > ../trimdata/$1_$4bp_processing/$2+$1_$4bp_trim_report.log
 
 # trim adaptor seqs and short seqs from R1
-../software/miniconda3/bin/cutadapt -a AGATCGGAAGAGCACACGTC -O 1 -m $4 -o ../trimdata/$1_$4bp_processing/$2+$1_$4bp_mappable.fastq ../trimdata/$1_$4bp_processing/$2+$1_R1.fastq >> ../trimdata/$1_$4bp_processing/$2+$1_$4bp_trim_report.log
+$softdir/cutadapt -a AGATCGGAAGAGCACACGTC -O 1 -m $4 -o ../trimdata/$1_$4bp_processing/$2+$1_$4bp_mappable.fastq ../trimdata/$1_$4bp_processing/$2+$1_R1.fastq >> ../trimdata/$1_$4bp_processing/$2+$1_$4bp_trim_report.log
 
 # zip the output
 gzip ../trimdata/$1_$4bp_processing/$2+$1_$4bp_mappable.fastq

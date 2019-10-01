@@ -14,6 +14,8 @@
 # $3 = SEQ_RUN*
 # * these can be found in /BEARCAVE/rawdata/metadata.txt
 
+softdir=../software/miniconda3/envs/py35/bin
+
 # set min length filter variable - this facilitates easy adjustment of min length threshold
 # set threads variable for number of cpus used by flash
 minlength=30
@@ -33,14 +35,14 @@ echo "Script: trim_merge_DS_PE_CL72.sh" > ../trimdata/$1_processing/$2+$1_merge_
 
 # trim first 5bp of R1
 echo "----------- First 5bp trimming -----------" >> ../trimdata/$1_processing/$2+$1_trim_report.log
-../software/miniconda3/bin/cutadapt -u 5 -o ../trimdata/$1_processing/$2+$1_R1.fastq ../trimdata/$1_processing/$2+$1_R1_untrimmed.fastq >> ../trimdata/$1_processing/$2+$1_trim_report.log
+$softdir/cutadapt -u 5 -o ../trimdata/$1_processing/$2+$1_R1.fastq ../trimdata/$1_processing/$2+$1_R1_untrimmed.fastq >> ../trimdata/$1_processing/$2+$1_trim_report.log
 
 # trim adaptor seqs and short seqs from R1 and R2
 echo "---------- Adapter trimming ----------" >> ../trimdata/$1_processing/$2+$1_trim_report.log
-../software/miniconda3/bin/cutadapt -a AGATCGGAAGAGCACACGTC -A AGATCGGAAGAGCGTCGTGT -O 1 -m $minlength -o ../trimdata/$1_processing/$2+$1_trim_R1.fastq -p ../trimdata/$1_processing/$2+$1_trim_R2.fastq ../trimdata/$1_processing/$2+$1_R1.fastq ../trimdata/$1_processing/$2+$1_R2.fastq >> ../trimdata/$1_processing/$2+$1_trim_report.log
+$softdir/cutadapt -a AGATCGGAAGAGCACACGTC -A AGATCGGAAGAGCGTCGTGT -O 1 -m $minlength -o ../trimdata/$1_processing/$2+$1_trim_R1.fastq -p ../trimdata/$1_processing/$2+$1_trim_R2.fastq ../trimdata/$1_processing/$2+$1_R1.fastq ../trimdata/$1_processing/$2+$1_R2.fastq >> ../trimdata/$1_processing/$2+$1_trim_report.log
 
 # merge R1 and R2, set max overlap (-M) to 75bp as most ancient frags should be mergeable
-../software/miniconda3/bin/flash -M 75 -t $threads -d ../trimdata/$1_processing -o $2+$1 ../trimdata/$1_processing/$2+$1_trim_R1.fastq ../trimdata/$1_processing/$2+$1_trim_R2.fastq >> ../trimdata/$1_processing/$2+$1_merge_report.log
+$softdir/flash -M 75 -t $threads -d ../trimdata/$1_processing -o $2+$1 ../trimdata/$1_processing/$2+$1_trim_R1.fastq ../trimdata/$1_processing/$2+$1_trim_R2.fastq >> ../trimdata/$1_processing/$2+$1_merge_report.log
 
 # clean up unnecessary files
 # here I am assuming modern DNA data and not discarding the non-overlapping PE reads

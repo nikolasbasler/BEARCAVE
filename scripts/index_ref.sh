@@ -6,8 +6,10 @@
 
 # This script should be run from /BEARCAVE/scripts
 # Example command line: sh index_ref.sh $1
-# $1 = 	Fasta file containing the reference genome, 
+# $1 = 	Fasta file containing the reference genome,  
 # 		e.g. ../refgenomes/PolarBear_mt/polarbear_mt.fasta.gz
+
+softdir=../software/miniconda3/envs/py35/bin
 
 folder=$(echo $1 | rev | cut -d'/' -f2 | rev)
 
@@ -25,8 +27,8 @@ else
 fi
 
 
-../software/miniconda3/bin/bwa index $fa
-../software/miniconda3/bin/samtools faidx $fa
+$softdir/bwa index $fa
+$softdir/samtools faidx $fa
 chmod 550 ../refgenomes/$folder/
 chmod 440 ../refgenomes/$folder/*
 

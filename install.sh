@@ -1,5 +1,5 @@
 #!/bin/bash
-# March 2019
+# Okt 2019
 
 echo "---------- CHANGING FOLDER NAME FROM BEARCAVE-master TO BEARCAVE -----------"
 
@@ -16,8 +16,8 @@ mkdir trimdata
 mkdir trimdata/trimlogs
 mkdir refgenomes
 
+softdir=./software/miniconda3/
 
-cd software
 
 if [[ "$OSTYPE" == "linux"* ]]; then
 
@@ -26,7 +26,7 @@ if [[ "$OSTYPE" == "linux"* ]]; then
   chmod u+x Miniconda3-4.5.11-Linux-x86_64.sh
 
   echo "---------- INSTALLING MINICONDA3 for Linux -----------"
-  ./Miniconda3-4.5.11-Linux-x86_64.sh -f -p $PWD/miniconda3;
+  ./Miniconda3-4.5.11-Linux-x86_64.sh -f -p $PWD/software/miniconda3;
 
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   echo "---------- DOWNLOADING MINICONDA3 4.5.11 for macOS -----------"
@@ -34,26 +34,27 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
   chmod u+x Miniconda3-4.5.11-MacOSX-x86_64.sh
 
   echo "---------- INSTALLING MINICONDA3 for macOS -----------"
-  ./Miniconda3-4.5.11-MacOSX-x86_64.sh -f -p $PWD/miniconda3;
+  ./Miniconda3-4.5.11-MacOSX-x86_64.sh -f -p $softdir;
 else
   echo "---------- Operatingsystem not supported -----------"
   exit
 fi
 
+echo "------Setting up Python 3.5.6 enviroment------"
+$softdir/bin/conda create -f --name py35 python=3.5.6
+sleep 2
 echo "---------- INSTALLING CUTADAPT 1.12 -----------"
-./miniconda3/bin/conda install -y -f -c bioconda cutadapt=1.12
-
-
+$softdir/bin/conda install -y -f -n py35 -c bioconda cutadapt=1.12 
+sleep 2
 echo "---------- INSTALLING FLASH 1.2.11 -----------"
-./miniconda3/bin/conda install -y -f -c bioconda flash=1.2.11
-
+$softdir/bin/conda install -y -f -n py35 -c bioconda flash=1.2.11
+sleep 2
 echo "---------- INSTALLING BWA 0.7.15 -----------"
-./miniconda3/bin/conda install -y -f -c bioconda bwa=0.7.15
-
+$softdir/bin/conda install -y -f -n py35 -c bioconda bwa=0.7.15
+sleep 2
 echo "---------- INSTALLING SAMTOOLS 1.3.1 -----------"
-./miniconda3/bin/conda install -y -f -c bioconda samtools=1.3.1
+$softdir/bin/conda install -y -f -n py35 -c bioconda samtools=1.3.1
 
-cd ..
 
 echo "---------- SETTING PERMISSIONS -----------"
 chmod 770 .
@@ -72,8 +73,6 @@ chmod 770 rawdata/old_metadata/
 chmod -R 770 trimdata/
 
 chmod 770 refgenomes/
-
-
 
 echo "---------- BEARCAVE INSTALLATION COMPLETE -----------"
 echo -e '\n'
